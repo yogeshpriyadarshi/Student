@@ -5,7 +5,6 @@ import { encrypt } from "../utils/crypto";
 import toast from "react-hot-toast";
 
 function StudentForm() {
-  const BASE_URL = import.meta.env.VITE_API_URL;
   const navigate = useNavigate();
   const [student, setStudent] = useState({
     fullName: "",
@@ -41,7 +40,7 @@ function StudentForm() {
     e.preventDefault();
     console.log(student);
     try {  
-      const response: any = await axios.post(`${BASE_URL}/register`, encrptedStudent);
+      const response: any = await axios.post(`http://localhost:5001/api/register`, encrptedStudent);
       console.log(response.data);
       toast.success("Student registered successfully!");
       navigate("/students");

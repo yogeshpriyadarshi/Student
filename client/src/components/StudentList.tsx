@@ -5,7 +5,6 @@ import { decrypt, encrypt } from "../utils/crypto";
 import toast from "react-hot-toast";
 
 function StudentList() {
-  const BASE_URL = import.meta.env.VITE_API_URL;  
  
   const [students, setStudents] = useState([
     { _id:"", fullName: "", email: "", course: " ",gender: "",DOB: "", address: "", phoneNumber: "" },
@@ -39,7 +38,7 @@ function StudentList() {
 
      const fetchStudents = async () => {
       try {
-        const response = await axios.get(`${BASE_URL}/students`);
+        const response = await axios.get(`http://localhost:5001/api/students`);
         // decrypt the student data before setting it to state
         const decryptedStudents = response.data.map((student: any) => ({
           ...student,
@@ -89,7 +88,7 @@ function StudentList() {
   const handleDelete = async (id: string) => {
     try {
       console.log("Deleting student with ID:", id);
-      await axios.delete(`${BASE_URL}/student/${id}`);
+      await axios.delete(`http://localhost:5001/api/student/${id}`);
       setDecryptedStudents(decryptedStudents.filter(student => student._id !== id));
       toast.success("Student deleted successfully!");
     } catch (error) {
@@ -103,7 +102,7 @@ function StudentList() {
     // Implement update logic here, e.g., navigate to an update form or open a modal
     console.log("Update student with ID:", id);
     try { 
-      await axios.put(`${BASE_URL}/student/${id}`, crptedUpdatedData);
+      await axios.put(`http://localhost:5001/api/student/${id}`, crptedUpdatedData);
       toast.success("Student updated successfully!");
       fetchStudents();
       setUpdatedData({
