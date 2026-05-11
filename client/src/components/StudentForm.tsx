@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { encrypt } from "../utils/crypto";
 import toast from "react-hot-toast";
 
@@ -52,6 +52,9 @@ function StudentForm() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
+      <Link to="/students" className="absolute top-4 left-4 text-blue-500 hover:underline">
+        &larr; Back to Students
+      </Link>
       <form
         onSubmit={handleSubmit}
         className="bg-white shadow-lg rounded-2xl p-8 w-full max-w-2xl space-y-6"
