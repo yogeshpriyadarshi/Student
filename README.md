@@ -100,7 +100,7 @@ npm install
 ## Build Server
 
 ```bash
-npm build
+npm run build
 ```
 
 ## Run Backend
